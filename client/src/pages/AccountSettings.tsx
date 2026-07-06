@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { authService, type User } from "@/lib/auth";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ export default function AccountSettings() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['/api/transactions', page, limit, from, to, search],
     queryFn: () => transactionsService.list({ page, limit, from: from || undefined, to: to || undefined, q: search || undefined }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     staleTime: 60_000,
   });
 
