@@ -111,7 +111,7 @@ export default function Header({ onCartClick, onAIClick, onAuthClick, cartItemCo
               onClick={() => setLocation('/')} 
               data-testid="text-logo"
             >
-              Team10
+              My Clothing
             </button>
           </div>
 

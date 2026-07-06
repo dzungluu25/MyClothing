@@ -1,4 +1,4 @@
-# AiEcoShop
+# My Clothing
 
 A full-stack web application built with React, Vite, and Express.
 
