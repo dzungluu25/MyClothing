@@ -3,12 +3,15 @@ import { createServer, type Server } from "http";
 import transactionRoutes from "./transaction.routes";
 import orderRoutes from "./order.routes";
 
+import productRoutes from "./product.routes";
+
 const BACKEND_URL = "http://localhost:3002";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const router = Router();
   
   router.use("/transactions", transactionRoutes);
+  router.use("/products", productRoutes);
   router.use("/", orderRoutes);
 
   app.use("/api", router);

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: aiecoshop
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: aiecoshop_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  app:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - DATABASE_URL=postgres://aiecoshop:password123@db:5432/aiecoshop_db
+      - NODE_ENV=production
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
